@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Escape Room - Desbloquea SOLID</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      text-align: center;
+      max-width: 800px;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .challenge {
+      display: none;
+      margin-top: 20px;
+      background: #222;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .visible {
+      display: block;
+    }
+    .principles {
+      background-color: #222;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 10px;
+      text-align: left;
+    }
+    .principles h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 Escape Room: Desbloquea SOLID</h1>
+    <p>Tu misión es resolver los acertijos para liberar el sistema TaskMaster Pro. Cada botón te lleva a una sala.</p>
+
+    <div class="principles">
+      <h2>📘 Principios SOLID</h2>
+      <p><strong>S - Single Responsibility Principle:</strong> Una clase debe tener una sola razón para cambiar.</p>
+      <p><strong>O - Open/Closed Principle:</strong> El software debe estar abierto a extensión pero cerrado a modificación.</p>
+      <p><strong>L - Liskov Substitution Principle:</strong> Una subclase debe poder sustituir a su clase base sin afectar el comportamiento.</p>
+      <p><strong>I - Interface Segregation Principle:</strong> No obligues a una clase a implementar métodos que no usa.</p>
+      <p><strong>D - Dependency Inversion Principle:</strong> Depende de abstracciones, no de implementaciones concretas.</p>
+    </div>
+
+    <button onclick="showChallenge(1)">Sala 1 - SRP</button>
+    <button onclick="showChallenge(2)">Sala 2 - OCP</button>
+    <button onclick="showChallenge(3)">Sala 3 - LSP</button>
+    <button onclick="showChallenge(4)">Sala 4 - ISP</button>
+    <button onclick="showChallenge(5)">Sala 5 - DIP</button>
+
+    <div id="challenge1" class="challenge">
+      <h2>🧩 Sala 1: Single Responsibility Principle</h2>
+      <p>Analiza la siguiente clase que mezcla funcionalidades y propon cómo podrías separarla para que cumpla el principio de responsabilidad única.</p>
+      <pre>
+public class Report {
+    public void Generate() { }
+    public void Print() { }
+    public void EmailToClient() { }
+}
+      </pre>
+    </div>
+
+    <div id="challenge2" class="challenge">
+      <h2>🧩 Sala 2: Open/Closed Principle</h2>
+      <p>Una clase de notificación se modifica cada vez que se agrega un nuevo canal. ¿Cómo aplicarías el principio OCP?</p>
+      <pre>
+public class Notification {
+    public void Send(string type, string msg) {
+        if (type == "email") { }
+        else if (type == "sms") { }
+        else if (type == "slack") { }
+    }
+}
+      </pre>
+    </div>
+
+    <div id="challenge3" class="challenge">
+      <h2>🧩 Sala 3: Liskov Substitution Principle</h2>
+      <p>Analiza este código y detecta si alguna subclase incumple el principio LSP.</p>
+      <pre>
+public class Bird {
+    public virtual void Fly() { }
+}
+
+public class Ostrich : Bird {
+    public override void Fly() {
+        throw new Exception("Can't fly");
+    }
+}
+      </pre>
+    </div>
+
+    <div id="challenge4" class="challenge">
+      <h2>🧩 Sala 4: Interface Segregation Principle</h2>
+      <p>Una interfaz demasiado grande obliga a las clases a implementar métodos que no usan. ¿Cómo aplicarías ISP?</p>
+      <pre>
+public interface IWorker {
+    void Work();
+    void Eat();
+}
+
+public class Robot : IWorker {
+    public void Work() { }
+    public void Eat() { /* no aplica */ }
+}
+      </pre>
+    </div>
+
+    <div id="challenge5" class="challenge">
+      <h2>🧩 Sala 5: Dependency Inversion Principle</h2>
+      <p>Este código depende directamente de una clase concreta. ¿Cómo aplicar el principio DIP?</p>
+      <pre>
+public class MySQLDatabase {
+    public void Save(string data) { }
+}
+
+public class App {
+    private MySQLDatabase db = new MySQLDatabase();
+}
+      </pre>
+    </div>
+  </div>
+
+  <script>
+    function showChallenge(n) {
+      document.querySelectorAll('.challenge').forEach(el => el.classList.remove('visible'));
+      document.getElementById('challenge' + n).classList.add('visible');
+    }
+  </script>
+</body>
+</html>
